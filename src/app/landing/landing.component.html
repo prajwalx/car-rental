@@ -1,0 +1,53 @@
+<!-- Container Fluid Begins -->
+<div class="container-fluid">
+  <!-- Row Begins -->
+  <div class="row">
+    <!-- Background Blur Begins -->
+    <div class="background blur">            
+      <!-- Right Align Block Begins -->
+      <div class=" Right-align-block">             
+        <!-- Form Begins -->
+        <form class="form-style" #form="ngForm"(ngSubmit)="OnSubmit(form)">
+          <!-- Form group for Date Input  -->
+          <div class="form-group">
+            <mat-form-field class="mat-input-style">
+              <input matInput 
+                [(ngModel)]="date"name="date" #date_crtl="ngModel" 
+                [min]="today"required 
+                [matDatepicker]="picker"
+                placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          
+          <!-- Form Group for autocomplete Location -->
+          <div class="form-group">
+            <mat-form-field class="mat-input-style">
+              <input type="text"required 
+                placeholder="Location" aria-label="Number" 
+                matInput [(ngModel)]="location"#location_ctrl="ngModel"
+                name="location" (ngModelChange)="do_Filter()"
+                [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filteredOptions " [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>
+          
+          <!-- Form Group for Submit Button -->
+          <div class="form-group">
+            <button mat-raised-button color="primary"type="submit">Submit</button>
+          </div>                          
+        </form>
+        <!-- Form Ends -->
+    </div>
+        <!-- Right Align Block Ends -->
+    </div>
+      <!-- Background Blur Ends -->
+  </div>
+    <!-- Row Ends -->
+</div>  
+<!-- Container fluid ends -->
