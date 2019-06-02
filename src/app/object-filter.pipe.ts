@@ -9,22 +9,20 @@ export class ObjectFilterPipe implements PipeTransform {
         if (!items || !prop || !candidates||candidates.length<=0) {
             return items;
         }
-        // console.log(prop);
-        // console.log(candidates);
-        //Filter items which hasOwnProperty prop's value is present in candidate array
-        
-        // filter items array, items which match and return true will be
-        // kept, false will be filtered out        
+        /*
+        Loop through candidates if any property is present in items return true, 
+        else filter out
+        */
+           
         for(let i=0;i<candidates.length;i++){
           candidates[i]=candidates[i].toString().toLowerCase();
         }
         
         return items.filter((item) =>{
-          // for(let prop of Object.keys(filter)){
             if(!item.hasOwnProperty(prop.toString()))
-            return false;      
+              return false;      
             if(candidates.indexOf(item[prop.toString()].toString().toLowerCase())!==-1)
-            return true;
+              return true;
           return false;
         });
     }
