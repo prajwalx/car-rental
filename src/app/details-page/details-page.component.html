@@ -50,12 +50,10 @@
           <div class="row checkBox-container">
             <h4 style="font-weight:lighter;"class="text-center col-sm-12">Transmission Type</h4>
             <mat-checkbox (change)="addCheckBox($event,0)" value="Manual" 
-              class="col-sm-6"color="warn"name="Manual_Check"
-              [(ngModel)]="Manual_Check">Manual
+              class="col-sm-6"color="warn"name="Manual_Check">Manual
             </mat-checkbox>   
             <mat-checkbox (change)="addCheckBox($event,0)" value="Automatic" 
-              class="col-sm-6"color="warn"name="Automatic_Check"
-              [(ngModel)]="Automatic_Check">Automatic
+              class="col-sm-6"color="warn"name="Automatic_Check">Automatic
             </mat-checkbox>                         
           </div>
           <mat-divider></mat-divider>
@@ -66,20 +64,16 @@
             <h4 style="font-weight:lighter;"class="text-center col-sm-12">Car Type</h4>
                
               <mat-checkbox (change)="addCheckBox($event,1)" value="Sedan" 
-                class="col-sm-6"color="warn"name="Sedan_Check"
-                [(ngModel)]="Sedan_Check">Sedan
+                class="col-sm-6"color="warn"name="Sedan_Check">Sedan
               </mat-checkbox>            
               <mat-checkbox (change)="addCheckBox($event,1)" value="Hatchback" 
-                class="col-sm-6"color="warn"name="Hatchback_Check"
-                [(ngModel)]="Hatchback_Check">Hatchback
+                class="col-sm-6"color="warn"name="Hatchback_Check">Hatchback
               </mat-checkbox> 
               <mat-checkbox (change)="addCheckBox($event,1)" value="SUV" 
-                class="col-sm-6"color="warn"name="SUV_Check"
-                [(ngModel)]="SUV_Check">SUV
+                class="col-sm-6"color="warn"name="SUV_Check">SUV
               </mat-checkbox>            
               <mat-checkbox (change)="addCheckBox($event,1)" value="Mini SUV" 
-                class="col-sm-6"color="warn"name="MiniSUV_Check"
-                [(ngModel)]="MiniSUV_Check">Mini SUV
+                class="col-sm-6"color="warn"name="MiniSUV_Check">Mini SUV
               </mat-checkbox>            
               
           </div>
@@ -91,12 +85,10 @@
             <h4 style="font-weight:lighter;"class="text-center col-sm-12">Fuel Type</h4>
                
               <mat-checkbox (change)="addCheckBox($event,2)" value="Petrol" 
-                class="col-sm-6"color="warn"name="Petrol_Check"
-                [(ngModel)]="Petrol_Check">Petrol
+                class="col-sm-6"color="warn"name="Petrol_Check">Petrol
               </mat-checkbox>            
               <mat-checkbox (change)="addCheckBox($event,2)" value="Diesel" 
-                class="col-sm-6"color="warn"name="Diesel_Check"
-                [(ngModel)]="Diesel_Check">Diesel
+                class="col-sm-6"color="warn"name="Diesel_Check">Diesel
               </mat-checkbox> 
               
           </div>
@@ -267,7 +259,7 @@
   
   <!-- Material pagination  -->
   <mat-paginator style="font-size:17px;"[length]="filteredCount.count" [pageSize]="pageSize" 
-       (page)="pageEvent = getPaginatorData($event)">
+       (page)=" getPaginatorData($event)">
   </mat-paginator> 
 
   </mat-sidenav-content>

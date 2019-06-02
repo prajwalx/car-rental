@@ -25,6 +25,9 @@ export class DetailsPageComponent implements OnInit {
    car_Type = ["SUV","Hatchback","Sedan","Mini SUV"];
    fuel_Type  = ["Petrol","Diesel"];
    
+   today=new Date();//todays date , default ngmodel for date Input
+   search:string;//ngModel for SearchBoxPipe
+   
    /*Input data to modify results*/
    locationFilter:string;             //User typed new location
    location_options: string[];        //All Loations for autocomplete input
