@@ -1,0 +1,275 @@
+<!-- Material sideNavbar Container Begins -->
+<mat-sidenav-container class="container-fluid">
+  <!-- sideNavbar begins -->
+  <mat-sidenav #sidenav [mode]="'push'"[fixedInViewport]="true"
+    [autoFocus]="false"class="sideNav">    
+  
+    <div class="row sideNavBarRow"style="">
+      <!-- SideNavbar Header   -->
+      <div class="col-12 text-center filter-options-header">
+        <h3>Filter Options</h3>
+        <button mat-button (click)="sidenav.toggle()">
+          <i class="fa fa-times" aria-hidden="true"></i>
+        </button>
+      </div>
+      
+      <!-- SideNavbar Input Form  -->
+      <div class="col-12">
+        <form class="form-style"style="" #form="ngForm"(ngSubmit)="ApplyFilters(form)">
+          
+          <!-- Form group for Date Input  -->
+          <div class="form-group">
+            <mat-form-field class="mat-input-style">
+              <input matInput 
+                [(ngModel)]="dateFilter"name="date" #date_crtl="ngModel" 
+                [min]="today"required 
+                [matDatepicker]="picker"
+                placeholder="Choose a date">
+              <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          
+          <!-- Form Group for autocomplete Location -->
+          <div class="form-group">
+            <mat-form-field class="mat-input-style">
+              <input type="text"required 
+                placeholder="Location" aria-label="Number" 
+                matInput [(ngModel)]="locationFilter"#location_ctrl="ngModel"
+                name="location" (ngModelChange)="do_Filter()"
+                [matAutocomplete]="auto">
+              <mat-autocomplete #auto="matAutocomplete">
+                <mat-option *ngFor="let option of filtered_location_options " [value]="option">
+                  {{option}}
+                </mat-option>
+              </mat-autocomplete>
+            </mat-form-field>
+          </div>                    
+          
+          <!-- Row for Transmission Checkboxes -->
+          <div class="row checkBox-container">
+            <h4 style="font-weight:lighter;"class="text-center col-sm-12">Transmission Type</h4>
+            <mat-checkbox (change)="addCheckBox($event,0)" value="Manual" 
+              class="col-sm-6"color="warn"name="Manual_Check"
+              [(ngModel)]="Manual_Check">Manual
+            </mat-checkbox>   
+            <mat-checkbox (change)="addCheckBox($event,0)" value="Automatic" 
+              class="col-sm-6"color="warn"name="Automatic_Check"
+              [(ngModel)]="Automatic_Check">Automatic
+            </mat-checkbox>                         
+          </div>
+          <mat-divider></mat-divider>
+          <br>
+          
+          <!-- Row for Car Type Checkboxes -->
+          <div class="row checkBox-container">
+            <h4 style="font-weight:lighter;"class="text-center col-sm-12">Car Type</h4>
+               
+              <mat-checkbox (change)="addCheckBox($event,1)" value="Sedan" 
+                class="col-sm-6"color="warn"name="Sedan_Check"
+                [(ngModel)]="Sedan_Check">Sedan
+              </mat-checkbox>            
+              <mat-checkbox (change)="addCheckBox($event,1)" value="Hatchback" 
+                class="col-sm-6"color="warn"name="Hatchback_Check"
+                [(ngModel)]="Hatchback_Check">Hatchback
+              </mat-checkbox> 
+              <mat-checkbox (change)="addCheckBox($event,1)" value="SUV" 
+                class="col-sm-6"color="warn"name="SUV_Check"
+                [(ngModel)]="SUV_Check">SUV
+              </mat-checkbox>            
+              <mat-checkbox (change)="addCheckBox($event,1)" value="Mini SUV" 
+                class="col-sm-6"color="warn"name="MiniSUV_Check"
+                [(ngModel)]="MiniSUV_Check">Mini SUV
+              </mat-checkbox>            
+              
+          </div>
+          <mat-divider></mat-divider>
+          <br>
+          
+          <!-- Row for Fuel Type Checkboxes -->
+          <div class="row checkBox-container">
+            <h4 style="font-weight:lighter;"class="text-center col-sm-12">Fuel Type</h4>
+               
+              <mat-checkbox (change)="addCheckBox($event,2)" value="Petrol" 
+                class="col-sm-6"color="warn"name="Petrol_Check"
+                [(ngModel)]="Petrol_Check">Petrol
+              </mat-checkbox>            
+              <mat-checkbox (change)="addCheckBox($event,2)" value="Diesel" 
+                class="col-sm-6"color="warn"name="Diesel_Check"
+                [(ngModel)]="Diesel_Check">Diesel
+              </mat-checkbox> 
+              
+          </div>
+          <mat-divider></mat-divider>
+          <br>
+          
+          <!-- Form Group for Submit Button -->
+          <div class="form-group text-center">
+            <button mat-raised-button color="primary"type="submit"
+              (click)="sidenav.toggle()">Apply Filters
+            </button>
+          </div>
+                                    
+        </form>
+        <!-- Form Ends -->
+      </div>
+      <!-- SideNavbar Input Form Ends -->
+      
+    </div>
+    <!-- row ends -->
+  </mat-sidenav>
+  <!-- SideNavbar -->
+
+<!-- Main Content Begins -->
+ <mat-sidenav-content class="row">
+   
+   <!-- Filter Toggle Button -->
+    <p>
+      <button mat-button (click)="sidenav.toggle()">
+      <i class="fa fa-filter"  style="font-size:25px;"aria-hidden="true"></i>
+    </button>
+    </p>
+    
+    <!-- Search And Sort Nav Bar  -->
+    <div class="col-12"style="padding-left:0;padding-right:0;">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        
+        <!-- Navbar toggle button -->
+        <button class="navbar-toggler" type="button" data-toggle="collapse"
+          data-target="#navbarSupportedContent2"aria-controls="navbarSupportedContent2"
+           aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+       </button>
+       
+       <!-- Navbar Items -->
+        <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+          <!-- Sort Text -->
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+              <a class="nav-link"id="sort_Text" href="javascript:"style="">Sort By</a>
+            </li>      
+          <!-- Sort Button -->
+            <li class="nav-item ">
+              <a class="nav-link "
+                [ngClass]="{'sortByPriceActive':this.sort_flag==-1,'sortby':this.sort_flag!=-1}"
+                (click)="SortByPrice(-1)" href="javascript:"style="">Price: High to Low
+              </a>
+            </li>            
+            <!-- Sort Button -->
+            <li class="nav-item ">
+              <a class="nav-link "
+                [ngClass]="{'sortByPriceActive':this.sort_flag==1,'sortby':this.sort_flag!=1}"
+                (click)="SortByPrice(1)" href="javascript:"style="">Price: Low to High
+              </a>
+            </li>                
+          </ul> 
+            
+            <!-- Search Bar -->
+          <form class="ml-3 my-auto d-inline w-100">
+            <div class="input-group">
+              <input type="text" [(ngModel)]="search"name="search"
+                class="form-control border-right-0" placeholder="Search your Rides..."> 
+              <div class="input-group-append">
+                <button class="btn btn-outline-success border-left-0" type="button">
+                  <i class="fa fa-search" aria-hidden="true"></i>
+                </button>
+              </div>
+            </div>
+          </form>
+          <!-- Search Bar Ends -->
+        
+        </div>
+        <!-- NavbarItems End -->
+      </nav>
+      
+    </div>    
+    <!-- Search and sort NavBar Ends -->
+    
+    <!-- Car data Card loop begins -->
+    <div class=""[hidden]="filtered_car_data==undefined"
+      *ngFor="let car of filtered_car_data
+      |searchFilter:search
+      |ObjectFilter:'location':[this.location]
+      |ObjectFilter:'fuel_Type':this.filter_fuel_Type
+      |ObjectFilter:'car_Type':this.filter_car_Type
+      |ObjectFilter:'transmission':this.filter_transmission
+      |DayFilter:this.date:filteredCount
+      |slice:this.lowValue:highValue">
+      
+      <!-- Material Card -->
+      <mat-card class="example-card row"
+        [ngClass]="{'not-available':car.availability.split(', ').indexOf(this.days[this.date.getDay()])==-1}">
+          <!-- Car Image -->
+          <div class="car-image"style="">
+            {{filteredLength}}
+            <picture style="">
+              <source *ngIf="car.photo.substring(car.photo.length-4)=='webp'"srcset="{{car.photo}}" type="image/webp">
+              <source *ngIf="car.photo.substring(car.photo.length-3)=='jpg'"srcset="{{car.photo}}" type="image/jpeg">
+              <source *ngIf="car.photo.substring(car.photo.length-3)=='png'"srcset="{{car.photo}}" type="image/png">
+              <img mat-card-image src="https://i0.wp.com/demechanica.com/wp-content/uploads/2018/07/placeholder.png">
+            </picture>
+          </div>  
+        
+        <div class="col-12">
+          <!-- Material Card Content  -->
+          <mat-card-content class=""style="display:flex">
+            <!-- Card content text left side -->
+            <div class="col-sm-6"style="">                            
+              <mat-card-title>{{car.name}}</mat-card-title>
+              <mat-card-title 
+                *ngIf="car.availability.split(', ').indexOf(this.days[this.date.getDay()])==-1">
+                Not Available
+              </mat-card-title>
+              <mat-card-subtitle>{{car.location}}</mat-card-subtitle>
+              <p style=""class="card-content-text">
+                <i class="fa fa-hashtag" aria-hidden="true"></i>
+                &nbsp;{{car.seats}} Seater
+              </p>
+              <p style=""class="card-content-text">
+                <i class="fa fa-bar-chart" aria-hidden="true"></i>
+                &nbsp;{{car.fuel_Type}}
+              </p>
+              <p style=""class="card-content-text">
+                <i class="fa fa-cog" aria-hidden="true"></i>
+                &nbsp;{{car.transmission}} 
+              </p>
+            </div>
+            <!-- Card content text right side -->
+            <div class="col-sm-6"style="">
+              <p style="font-size:21px;"class="card-content-text">
+                <i class="fa fa-clock-o" aria-hidden="true"></i>
+                &nbsp;{{car.availability}}
+              </p>
+              <p style=""class="card-content-text">
+                <i class="fa fa-car" aria-hidden="true"></i>
+                &nbsp;{{car.car_Type}}
+              </p>
+              <p style=""class="card-content-text">
+                <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                &nbsp;{{car.location}} 
+              </p>
+              <p style=""class="card-content-left">
+                <i class="fa fa-inr" aria-hidden="true"></i>
+                &nbsp;{{car.price}} 
+              </p>
+              
+              <!-- Book Now Button -->
+              <button *ngIf="car.availability.split(', ').indexOf(this.days[this.date.getDay()])!==-1"
+               mat-flat-button color="accent"class="book-now-btn">Book Now!</button>
+              <button *ngIf="car.availability.split(', ').indexOf(this.days[this.date.getDay()])==-1"
+               mat-flat-button color="accent" disabled class="book-now-btn">Book Now!</button>
+            </div>
+          </mat-card-content>  
+        </div>
+        <!-- col-12 ends -->                                  
+      </mat-card>
+    </div>
+  
+  <!-- Material pagination  -->
+  <mat-paginator style="font-size:17px;"[length]="filteredCount.count" [pageSize]="pageSize" 
+       (page)="pageEvent = getPaginatorData($event)">
+  </mat-paginator> 
+
+  </mat-sidenav-content>
+  <!-- Main Content Ends -->
+</mat-sidenav-container>

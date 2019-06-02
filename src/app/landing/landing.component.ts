@@ -3,6 +3,7 @@ import {FormControl,AbstractControl,ValidatorFn,NgForm} from '@angular/forms';
 import {Observable} from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
 import {CarDataService} from '../car-data.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-landing',
@@ -20,7 +21,7 @@ export class LandingComponent implements OnInit {
     
     car_data:any[];//Car Data from Api
     
-  constructor(private car_data_service:CarDataService) { }
+  constructor(private car_data_service:CarDataService,private router:Router) { }
 
   ngOnInit() {
     /*Set date to todays date default*/
@@ -59,7 +60,14 @@ export class LandingComponent implements OnInit {
    
   /*Called on Submit of form*/
   OnSubmit(form:NgForm){
-    if(form.valid&&this.location_options.indexOf(this.location)>-1)
-    console.log('valid');
+    if(form.valid&&this.location_options.indexOf(this.location)>-1){
+      console.log('valid');  
+      /*Share data to Service*/
+      this.car_data_service.setQueryParams({date:this.date,location:this.location});
+      
+      /*Navigate to DetailsPageComponent*/
+      this.router.navigateByUrl('/details');
+    }
+    
   }
 }

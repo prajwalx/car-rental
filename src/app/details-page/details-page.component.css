@@ -1,0 +1,139 @@
+.sortby{
+  font-size:11px;
+  background: rgba(0,0,0,0.3);
+  color:whitesmoke;
+  /* color:white !important; */
+  border:solid 2px rgba(0,0,0,0.5);
+  border-radius:2%;
+}
+.sortby:hover{
+  font-size:10px;
+  background:whitesmoke;
+  color:black !important;
+  font-weight: bold;
+  border:solid 2px rgba(0,0,0,1);
+}
+.sortByPriceActive{
+  font-size:10px;
+  background:whitesmoke;
+  color:black !important;
+  font-weight: bold;
+  border:solid 2px rgba(0,0,0,1);
+}
+.sideNav{
+  width: 25%;
+  /* margin-left: 0; */
+}
+.sideNavBarRow{
+  padding-top:80px;margin:0;
+}
+.checkBox-container{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+/* .sideNav .row{
+  padding-top:80px;
+} */
+.filter-options-header{
+  padding: 0;
+}
+.filter-options-header>h3{
+  font-weight: lighter;
+}
+#sort_Text{
+  cursor: default;font-size:13px;padding-top:9px;
+}
+
+
+/* 
+.mat-card-image{
+  width:250px;height:150px;;border:solid;float:left
+} */
+.example-card {
+  /* max-width: 400px; */
+  width: 100%;
+  /* float: right; */
+  /* float: left; */
+  margin-bottom:2%;
+  padding: 2%;
+  transition:   1s ease-out;
+  margin-left:0;
+  margin-right:0
+  
+}
+.example-card:hover{
+  background-color: lavender;
+  /* cursor: pointer; */
+   box-shadow: 0 8px 6px -6px black;
+  
+}
+.card-content-text{
+  font-size:18px;font-weight:lighter
+}
+.book-now-btn{
+  transition: 1.5s ease-in;
+  /* cursor: default; */
+}
+.book-now-btn:hover{
+  box-shadow: 0 8px 6px -6px rgba(0, 0, 0, 0.4);
+  
+}
+
+.example-header-image {
+  background-image: url('https://material.angular.io/assets/img/examples/shiba1.jpg');
+  background-size: cover;
+}
+.car-image{
+  /* max-width: 400px; */
+  max-width:400px;
+  max-height:250px;
+  overflow:hidden;
+  background:whitesmoke;
+  border-radius:2%;
+  margin-right:3%;
+  float:left;
+  
+}
+.mat-input-style{
+  width:100%;
+  background:white;
+  padding-left:1%;
+  padding-right:1%;
+}
+.not-available{
+  background-image: linear-gradient(to right, rgba(0,0,0,0.10), rgba(0,0,0,0.20));
+}
+mat-sidenav-container{
+  min-height:100%;
+}
+
+@media only screen and (max-width: 705px)  {
+  .car-image{
+    /* max-width: 400px; */
+    /* max-width:300px; */
+    max-height:240px;
+    overflow:hidden;
+    background:whitesmoke;
+    border-radius:2%;
+    margin-right: 0;
+    /* margin-right:3%; */
+    float: none;
+    
+  }
+  .sideNav{
+    width: 50%;
+  }
+  .checkBox-container{
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  
+}
+/*
+beige
+lavender
+lightgoldenrodyellow
+lightslategray
+lightgray
+mistyrose
+*/
