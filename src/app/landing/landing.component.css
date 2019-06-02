@@ -3,7 +3,7 @@
   display: inline-block; 
   
   width:100%;
-  height:600px;
+  height:700px;
   padding:0;
   margin:0;  
 }
@@ -48,6 +48,36 @@
   padding-left:1%;
   padding-right:1%;
 }
+/* Make the image fully responsive */
+  .carousel-inner img {
+    width: 100%;
+    height: 100%;
+  }
+  .bgsmoke{
+    background:whitesmoke;
+    padding-bottom: 3%;
+  }
+  .bgsmoke .container{
+    padding-top: 3%;
+  }
+  .bgsmoke .col-12{
+    font-weight: lighter;
+  }
+  .drive-advantage-style{
+    border:solid 5px whitesmoke;padding:3%;background:white;
+  }
+  .drive-advantage-style>h3{
+    font-weight:lighter;color:mediumseagreen;
+  }
+  .how-drive-works-style{
+    border:solid 5px whitesmoke;padding:1%;background:white;
+  }
+  .how-drive-works-style>h4{
+    font-weight:lighter;color:mediumseagreen;
+  }
+  .how-drive-works-style>p{
+    font-size:15px;
+  }
 @media only screen and (max-width: 1111px)  {
   .background{
     background-position: right 0px top 0px;
@@ -65,6 +95,9 @@
     margin-left: auto !important;
     margin-right: auto !important;
     margin-top:5%;width:25%;
+  }
+  .blur{
+    height:500px;
   }
   
 }
